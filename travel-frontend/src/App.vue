@@ -14,6 +14,6 @@ export default {
 
 <style>
 * {
-    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", "sans-serif";
 }
 </style>

@@ -3,18 +3,19 @@
     <Navigate />
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2"></div>
+            <div class="col-2 left-sidebar"></div>
             <div class="col-8">
                 <div class="card">
-                    <div class="card-header bg-secondary text-light">Search</div>
+                    <div class="card-header bg-info text-light">Search</div>
                     <div class="card-body">
                         <form>
                             <div class="radio">
-                                <label><input type="radio" value="byTitle" v-model="method">Search by title</label>
+                                <label class="alert alert-info form-control"><input type="radio" value="byTitle" v-model="method">Search by title</label>
                             </div>
                             <input type="text" class="form-control" v-model="searchTitle">
+                            <br>
                             <div class="radio">
-                                <label><input type="radio" value="byDescription" v-model="method">Search by description</label>
+                                <label class="alert alert-info form-control"><input type="radio" value="byDescription" v-model="method">Search by description</label>
                             </div>
                             <textarea class="form-control" rows="3" v-model="searchDescription"></textarea>
                         </form>
@@ -23,27 +24,26 @@
                     <div class="card-body border">
                         <form>
                             <div class="radio">
-                                <label><input type="radio" value="byFavor" v-model="sort">Sort by favor number</label>
+                                <label class="alert alert-info form-control"><input type="radio" value="byFavor" v-model="sort">Sort by favor number</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" value="byTime" v-model="sort">Sort by time of last-modified</label>
+                                <label class="alert alert-info form-control"><input type="radio" value="byTime" v-model="sort">Sort by time of last-modified</label>
                             </div>
                         </form>
-                        <br>
                         <button class="btn btn-success form-control" @click="search">search</button>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-secondary text-light">Result</div>
+                    <div class="card-header bg-info text-light">Result</div>
                     <div class="card-body border">
-                        <div class="row border" v-for="i in pageSize" :key="i" v-show="i+pageSize*(currentPage-1)<=resultCount">
-                            <div class="col-3 ">
+                        <div class="row alert alert-info" v-for="i in pageSize" :key="i" v-show="i+pageSize*(currentPage-1)<=resultCount">
+                            <div class="col-3">
                                 <a href="#" @click="details(imageID[i-1+pageSize*(currentPage-1)])">
                                     <img :src="src[i-1+pageSize*(currentPage-1)]">
                                 </a>
                             </div>
                             <div class="col-9">
-                                <p>{{title[i-1+pageSize*(currentPage-1)]}}</p>
+                                <p class="title">{{title[i-1+pageSize*(currentPage-1)]}}</p>
                                 <p class="description">{{description[i-1+pageSize*(currentPage-1)]}}</p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2"></div>
+            <div class="col-2 right-sidebar"></div>
         </div>
     </div>
     <Footer />
@@ -191,5 +191,22 @@ export default {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.left-sidebar {
+    background-image: url(../assets/left-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.right-sidebar {
+    background-image: url(../assets/right-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.title {
+    font-family: "italic", "Georgia", "serif";
+    font-weight: bold;
 }
 </style>

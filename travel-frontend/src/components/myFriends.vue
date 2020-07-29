@@ -2,7 +2,7 @@
 <div>
     <Navigate />
     <div class="row">
-        <div class="col-1"></div>
+        <div class="col-1 alert alert-info" style="min-height:900px"></div>
         <div class="col-3">
             <div class="card">
                 <!-- 模态框 -->
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-header bg-secondary text-light">Find a user!</div>
+                <div class="card-header bg-info text-light">Find a user!</div>
                 <div class="card-footer">
                     <div class="form-group" style="text-align:center">
                         <input type="text" class="form-control" v-model="searchUsername">
@@ -32,39 +32,38 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-secondary text-light">My friends</div>
-                <div class="card-body" v-for="(friendName,index) in friendNames" :key="index">
-                    <a href="#" @click="loadUserInfo(index)">{{friendName}}</a>
-
+                <div class="card-header bg-info text-light">My friends</div>
+                <div class="card-body border" v-for="(friendName,index) in friendNames" :key="index">
+                    <button class="btn btn-light form-control" @click="loadUserInfo(index)">{{friendName}}</button>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-secondary text-light">My friends (Limited access)</div>
+                <div class="card-header bg-info text-light">My friends (Limited access)</div>
                 <div class="card-body" v-for="(friendName,index) in limitedNames" :key="index">
-                    <a href="#" @click="loadLimitedUserInfo(index)">{{friendName}}</a>
+                    <button class="btn btn-light form-control" @click="loadLimitedUserInfo(index)">{{friendName}}</button>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-secondary text-light">Friend request I sent to</div>
+                <div class="card-header bg-info text-light">Friend request I sent to</div>
                 <div class="card-body" v-for="(friendName,index) in invitingNames" :key="index">
-                    <a href="#" @click="loadInvitingInfo(index)">{{friendName}}</a>
+                    <button class="btn btn-light form-control" @click="loadInvitingInfo(index)">{{friendName}}</button>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-secondary text-light">Friend request I received</div>
+                <div class="card-header bg-info text-light">Friend request I received</div>
                 <div class="card-body" v-for="(friendName,index) in invitedNames" :key="index">
-                    <a href="#" @click="loadInvitedInfo(index)">{{friendName}}</a>
+                    <button class="btn btn-light form-control" @click="loadInvitedInfo(index)">{{friendName}}</button>
                 </div>
             </div>
         </div>
         <div class="col-7">
             <div class="card">
-                <div class="card-header bg-secondary text-light">User: {{infoName}}</div>
+                <div class="card-header bg-info text-light">User: {{infoName}}</div>
                 <div class="card-body border">
-                    <div>id: {{infoUid}}</div>
-                    <div>email: {{infoEmail}}</div>
-                    <div>sign up date: {{infoDate}}</div>
-                    <div>options:
+                    <div class="alert alert-info">id: {{infoUid}}</div>
+                    <div class="alert alert-info">email: {{infoEmail}}</div>
+                    <div class="alert alert-info">sign up date: {{infoDate}}</div>
+                    <div class="alert alert-info">options:
                         <span v-show="optionShow==1">
                             <button class="btn btn-info" @click="limit(friendUid[friendOptionIndex])">
                                 limit his/her access to me
@@ -97,7 +96,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="card-header bg-secondary text-light">{{infoName}}'s favors:</div>
+                <div class="card-header bg-info text-light">{{infoName}}'s favors:</div>
                 <div class="card-body border" style="text-align:center">
                     <div v-show="resultCount==0&&denied==false" class="row">
                         <div class="col-9">
@@ -126,7 +125,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1"></div>
+        <div class="col-1 alert alert-info" style="min-height:900px"></div>
     </div>
     <Footer />
 </div>

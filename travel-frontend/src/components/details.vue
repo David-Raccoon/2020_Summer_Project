@@ -1,30 +1,35 @@
 <template>
 <div>
     <Navigate />
-    <div class="container">
-        <div class="card">
-            <div class="card-header bg-secondary text-light">Photo details: {{title}}</div>
-            <div class="card-body">
-                <h3>{{title}} (by {{username}})</h3>
-                <h5>{{description}}</h5>
-                <div class="row">
-                    <div class="col-6">
-                        <img :src="src">
-                    </div>
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-header bg-secondary text-light">Classification</div>
-                            <div class="card-body border">Content: {{content}}</div>
-                            <div class="card-body border">Country: {{country}}</div>
-                            <div class="card-body border">City: {{city}}</div>
-                            <div class="card-body border">
-                                <div class="row">
-                                    <div class="col-6">
-                                        Current like number: {{likeNumber}}
-                                    </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-success form-control" v-show="!isFavor" @click="addFavorite">Add to my favorite!</button>
-                                        <button class="btn btn-danger form-control" v-show="isFavor" @click="removeFavorite">Remove from my favorite</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 left-sidebar"></div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header bg-info text-light">Photo details: {{title}}</div>
+                    <div class="card-body">
+                        <h3 class="title">{{title}} (by {{username}})</h3>
+                        <h5>{{description}}</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <img :src="src">
+                            </div>
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-header bg-info text-light">Classification</div>
+                                    <div class="card-body border title">Content: {{content}}</div>
+                                    <div class="card-body border title">Country: {{country}}</div>
+                                    <div class="card-body border title">City: {{city}}</div>
+                                    <div class="card-body border title">
+                                        <div class="row">
+                                            <div class="col-6 title">
+                                                Current like number: {{likeNumber}}
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-success form-control" v-show="!isFavor" @click="addFavorite">Add to my favorite!</button>
+                                                <button class="btn btn-danger form-control" v-show="isFavor" @click="removeFavorite">Remove from my favorite</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -32,6 +37,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-2 right-sidebar"></div>
         </div>
     </div>
     <Footer />
@@ -175,6 +181,23 @@ export default {
 
 <style scoped>
 img {
+    width: 100%;
+}
+
+.title {
+    font-family: "italic", "Georgia", "serif";
+    font-weight: bold;
+}
+
+.left-sidebar {
+    background-image: url(../assets/left-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.right-sidebar {
+    background-image: url(../assets/right-sidebar.jpg);
+    background-size: 100% 100%;
     width: 100%;
 }
 </style>

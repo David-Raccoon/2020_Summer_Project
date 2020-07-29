@@ -8,7 +8,7 @@
         </div>
         <div class="row" v-for="i in 2" :key=i>
             <div class="col" v-for="j in 3" :key=j>
-                <div class="alert alert-dark">
+                <div class="alert alert-info">
                     <div class="row">
                         <div class="col-4">
                             <a href="#" @click="details(lateImageID[j-1+3*(i-1)])">
@@ -16,7 +16,7 @@
                             </a>
                         </div>
                         <div class="col-8">
-                            <p>{{lateTitle[j-1+3*(i-1)]}}</p>
+                            <p class="title">{{lateTitle[j-1+3*(i-1)]}}</p>
                             <p class="description">{{lateDescription[j-1+3*(i-1)]}}</p>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div class="alert alert-danger" style="text-align:center">Hottest Image Right Now!</div>
         <div class="row">
-            <div class="col-2"></div>
+            <div class="col-2 border left-sidebar"></div>
             <div id="demo" class="carousel slide col-8" data-ride="carousel">
                 <!-- 指示符 -->
                 <ul class="carousel-indicators">
@@ -41,7 +41,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <a href="#" @click="details(hotImageID[0])">
-                            <img :src="hotSrc[0]">
+                            <img height="400" :src="hotSrc[0]">
                         </a>
                     </div>
                     <div class="carousel-item">
@@ -73,7 +73,7 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
-            <div class="col-2"></div>
+            <div class="col-2 border right-sidebar"></div>
         </div>
     </div>
 
@@ -182,5 +182,22 @@ export default {
 .carousel-inner img {
     width: 100%;
     height: 100%;
+}
+
+.title {
+    font-family: "italic", "Georgia", "serif";
+    font-weight: bold;
+}
+
+.left-sidebar {
+    background-image: url(../assets/left-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.right-sidebar {
+    background-image: url(../assets/right-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
 }
 </style>

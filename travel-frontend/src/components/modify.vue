@@ -4,21 +4,23 @@
     <Banner />
     <div class="container">
         <div class="card">
-            <div class="card-header bg-secondary text-light">Upload</div>
+            <div class="card-header bg-info text-light">Upload</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-3 border">
                         <img id="preview" :src="previewSrc">
                         <input type="file" id="file" class="form-control" @change="setPreview" accept="image/jpg,image/jpeg,image/png,image/PNG">
                     </div>
-                    <div class="col-9 border">
-                        <p>Title</p>
+                    <div class="col-9">
+                        <div class="alert alert-info">Title</div>
                         <input type="text" class="form-control" v-model="title">
-                        <p>Description</p>
+                        <br>
+                        <div class="alert alert-info">Description</div>
                         <textarea class="form-control" rows="3" v-model="description"></textarea>
+                        <br>
                         <div class="row">
                             <div class="col-4">
-                                <p>Content</p>
+                                <div class="alert alert-info">Content</div>
                                 <select class="form-control" v-model="selectedContent">
                                     <option value="scenery">scenery</option>
                                     <option value="city">city</option>
@@ -30,19 +32,20 @@
                                 </select>
                             </div>
                             <div class="col-4">
-                                <p>Country</p>
+                                <div class="alert alert-info">Country</div>
                                 <select v-model="selectedCountry" class="form-control">
                                     <option v-for="(country,index) in countries" :key="index" :value="country">{{country}}</option>
                                 </select>
                             </div>
                             <div class="col-4">
-                                <p>City</p>
+                                <div class="alert alert-info">City</div>
                                 <select v-model="selectedCity" class="form-control">
                                     <option v-for="(city,index) in cities" :key="index" :value="city">{{city}}</option>
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-success" @click="modify">modify</button>
+                        <br>
+                        <button class="btn btn-success form-control" @click="modify">modify</button>
                     </div>
                 </div>
             </div>

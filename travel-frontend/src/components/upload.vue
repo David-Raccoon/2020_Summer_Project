@@ -2,54 +2,63 @@
 <div>
     <Navigate />
     <Banner />
-    <div class="container">
-        <div class="card">
-            <div class="card-header bg-secondary text-light">Upload</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3 border">
-                        <img id="preview" :src="previewSrc">
-                        <input type="file" id="file" class="form-control" @change="setPreview" accept="image/jpg,image/jpeg,image/png,image/PNG">
-                    </div>
-                    <div class="col-9 border">
-                        <p>Title</p>
-                        <input type="text" class="form-control" v-model="title">
-                        <p>Description</p>
-                        <textarea class="form-control" rows="3" v-model="description"></textarea>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 left-sidebar"></div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header bg-info text-light">Upload</div>
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-4">
-                                <p>Content</p>
-                                <select class="form-control" v-model="selectedContent">
-                                    <option value="scenery">scenery</option>
-                                    <option value="city">city</option>
-                                    <option value="people">people</option>
-                                    <option value="animal">animal</option>
-                                    <option value="building">building</option>
-                                    <option value="wonder">wonder</option>
-                                    <option value="other">other</option>
-                                </select>
+                            <div class="col-3 border">
+                                <img id="preview" :src="previewSrc">
+                                <input type="file" id="file" class="form-control" @change="setPreview" accept="image/jpg,image/jpeg,image/png,image/PNG">
                             </div>
-                            <div class="col-4">
-                                <p>Country</p>
-                                <select v-model="selectedCountry" class="form-control">
-                                    <option v-for="(country,index) in countries" :key="index" :value="country">{{country}}</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <p>City</p>
-                                <select v-model="selectedCity" class="form-control">
-                                    <option v-for="(city,index) in cities" :key="index" :value="city">{{city}}</option>
-                                </select>
+                            <div class="col-9">
+                                <div class="alert alert-info">Title</div>
+                                <input type="text" class="form-control" v-model="title">
+                                <br>
+                                <div class="alert alert-info">Description</div>
+                                <textarea class="form-control" rows="3" v-model="description"></textarea>
+                                <br>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="alert alert-info">Content</div>
+                                        <select class="form-control" v-model="selectedContent">
+                                            <option value="scenery">scenery</option>
+                                            <option value="city">city</option>
+                                            <option value="people">people</option>
+                                            <option value="animal">animal</option>
+                                            <option value="building">building</option>
+                                            <option value="wonder">wonder</option>
+                                            <option value="other">other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="alert alert-info">Country</div>
+                                        <select v-model="selectedCountry" class="form-control">
+                                            <option v-for="(country,index) in countries" :key="index" :value="country">{{country}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="alert alert-info">City</div>
+                                        <select v-model="selectedCity" class="form-control">
+                                            <option v-for="(city,index) in cities" :key="index" :value="city">{{city}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-success form-control" @click="upload">upload</button>
                             </div>
                         </div>
-                        <button class="btn btn-success" @click="upload">upload</button>
+                        <br />
+                        <div class="alert alert-danger" v-show="errorMsg!=''">
+                            {{errorMsg}}
+                        </div>
                     </div>
                 </div>
-                <br />
-                <div class="alert alert-danger" v-show="errorMsg!=''">
-                    {{errorMsg}}
-                </div>
             </div>
+            <div class="col-2 right-sidebar"></div>
         </div>
     </div>
     <Footer />
@@ -160,6 +169,18 @@ export default {
 
 <style scoped>
 img {
+    width: 100%;
+}
+
+.left-sidebar {
+    background-image: url(../assets/left-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.right-sidebar {
+    background-image: url(../assets/right-sidebar.jpg);
+    background-size: 100% 100%;
     width: 100%;
 }
 </style>

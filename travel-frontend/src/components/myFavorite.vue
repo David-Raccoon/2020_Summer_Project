@@ -2,69 +2,76 @@
 <div>
     <Navigate />
     <Banner />
-    <div class="container">
-        <div class="card">
-            <div class="card-header bg-secondary text-light">My Favorite</div>
-            <div class="card-body">
-                <!-- 模态框 -->
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- 模态框头部 -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Are you sure to remove this favorite?</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 left-sidebar"></div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header bg-info text-light">My Favorite</div>
+                    <div class="card-body">
+                        <!-- 模态框 -->
+                        <div class="modal fade" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- 模态框头部 -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Are you sure to remove this favorite?</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <!-- 模态框主体 -->
+                                    <div class="modal-body">
+                                        {{title[deleteIndex]}}
+                                    </div>
+                                    <!-- 模态框底部 -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" @click="removeFavorite(imageID[deleteIndex])">Confirm</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- 模态框主体 -->
-                            <div class="modal-body">
-                                {{title[deleteIndex]}}
+                        </div>
+                        <div v-show="resultCount==0" class="row">
+                            <div class="col-9">
+                                You have no favorite photo yet. Try to add some!
                             </div>
-                            <!-- 模态框底部 -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal" @click="removeFavorite(imageID[deleteIndex])">Confirm</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <img class="col-3" src="../assets/empty.jpg">
+                        </div>
+                        <div class="row alert alert-info" v-for="i in 5" :key="i" v-show="i+5*(currentPage-1)<=resultCount">
+                            <div class="col-3 ">
+                                <a href="#" @click="details(imageID[i-1+5*(currentPage-1)])">
+                                    <img :src="src[i-1+5*(currentPage-1)]">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <p class="title">{{title[i-1+5*(currentPage-1)]}}</p>
+                                <p class="description">{{description[i-1+5*(currentPage-1)]}}</p>
+                            </div>
+                            <div class="col-3">
+                                <br /><br />
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" @click="deleteIndex=i-1+5*(currentPage-1)">
+                                    Remove from favorite
+                                </button>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center">
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" v-show="pageCount>=1" class="btn btn-primary" @click="turnToPage(currentPage-1)">《</button>
+                                <button type="button" v-for="i in pageCount" :key="i" :id="i" class="btn btn-primary" @click="turnToPage(i)">{{i}}</button>
+                                <button type="button" v-show="pageCount>=1" class="btn btn-primary" @click="turnToPage(currentPage+1)">》</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div v-show="resultCount==0" class="row">
-                    <div class="col-9">
-                        You have no favorite photo yet. Try to add some!
-                    </div>
-                    <img class="col-3" src="../assets/empty.jpg">
+                <div class="alert alert-primary title" style="text-align:center">
+                    My Footprint
                 </div>
-                <div class="row border" v-for="i in 5" :key="i" v-show="i+5*(currentPage-1)<=resultCount">
-                    <div class="col-3 ">
-                        <a href="#" @click="details(imageID[i-1+5*(currentPage-1)])">
-                            <img :src="src[i-1+5*(currentPage-1)]">
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <p>{{title[i-1+5*(currentPage-1)]}}</p>
-                        <p class="description">{{description[i-1+5*(currentPage-1)]}}</p>
-                    </div>
-                    <div class="col-3">
-                        <br /><br />
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" @click="deleteIndex=i-1+5*(currentPage-1)">
-                            Remove from favorite
-                        </button>
-                    </div>
-                </div>
-                <br />
-                <div style="text-align:center">
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" v-show="pageCount>=1" class="btn btn-primary" @click="turnToPage(currentPage-1)">《</button>
-                        <button type="button" v-for="i in pageCount" :key="i" :id="i" class="btn btn-primary" @click="turnToPage(i)">{{i}}</button>
-                        <button type="button" v-show="pageCount>=1" class="btn btn-primary" @click="turnToPage(currentPage+1)">》</button>
-                    </div>
+                <div class="alert alert-info" style="text-align:center" v-for="i in footprint" :key="i.imageID">
+                    <a href="#" class="title" @click="details(i.imageID)">{{i.title}}</a>
                 </div>
             </div>
-        </div>
-        <div class="alert alert-primary" style="text-align:center">
-            My Footprint
-        </div>
-        <div class="alert alert-secondary" style="text-align:center" v-for="i in footprint" :key="i.imageID">
-            <a href="#" @click="details(i.imageID)">{{i.title}}</a>
+            <div class="col-2 right-sidebar"></div>
         </div>
     </div>
     <Footer />
@@ -194,5 +201,22 @@ export default {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.left-sidebar {
+    background-image: url(../assets/left-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.right-sidebar {
+    background-image: url(../assets/right-sidebar.jpg);
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.title {
+    font-family: "italic", "Georgia", "serif";
+    font-weight: bold;
 }
 </style>

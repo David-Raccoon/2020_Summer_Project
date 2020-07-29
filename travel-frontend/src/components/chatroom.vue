@@ -2,23 +2,23 @@
 <div>
     <Navigate />
     <div class="row">
-        <div class="col-1"></div>
+        <div class="col-1 alert alert-info" style="min-height:900px"></div>
         <div class="col-2">
             <div class="card">
-                <div class="card-header bg-secondary text-light">My friends</div>
-                <div class="card-body" v-for="(friendName,index) in friendNames" :key="index">
-                    <a href="#" @click="targetUsername=friendNames[index];targetUid=friendUid[index];loadChatList(userId,targetUid)">{{friendName}}</a>
+                <div class="card-header bg-info text-light">My friends</div>
+                <div class="card-body border" v-for="(friendName,index) in friendNames" :key="index">
+                    <button class="btn btn-light form-control" @click="targetUsername=friendNames[index];targetUid=friendUid[index];loadChatList(userId,targetUid)">{{friendName}}</button>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header bg-secondary text-light">My friends (Limited access)</div>
-                <div class="card-body" v-for="(friendName,index) in limitedNames" :key="index">
-                    <a href="#" @click="targetUsername=limitedNames[index];targetUid=limitedUid[index];loadChatList(userId,targetUid)">{{friendName}}</a>
+                <div class="card-header bg-info text-light">My friends (Limited access)</div>
+                <div class="card-body border" v-for="(friendName,index) in limitedNames" :key="index">
+                    <button class="btn btn-light form-control" @click="targetUsername=limitedNames[index];targetUid=limitedUid[index];loadChatList(userId,targetUid)">{{friendName}}</button>
                 </div>
             </div>
         </div>
         <div class="chat-box col-8">
-            <div class="card-header bg-secondary text-light">Chatting with：{{targetUsername}}</div>
+            <div class="card-header bg-info text-light">Chatting with：{{targetUsername}}</div>
             <div class="card-body border">
                 <div v-show="init" class="init-banner">
                     Chat with your friends!
@@ -37,7 +37,7 @@
                         <div class="col-1">
                             <img width="50" height="50" src="../assets/profile.jpg" />
                         </div>
-                        <div class="alert alert-secondary col-4">
+                        <div class="alert alert-info col-4">
                             ({{i.date}}): {{i.msg}}
                         </div>
                         <div class="col-7"></div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-1"></div>
+        <div class="col-1 alert alert-info" style="min-height:900px"></div>
     </div>
 </div>
 </template>
